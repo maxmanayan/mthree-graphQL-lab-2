@@ -9,8 +9,7 @@ const resolvers = {
 
       // finds associated books
       let authors = res.map(async (author) => {
-        let books = await Book.find({ authorId: author._id });
-        author["books"] = books;
+        author["books"] = await Book.find({ authorId: author._id });
         return author;
       });
 
@@ -20,7 +19,13 @@ const resolvers = {
     async getAllBooks() {
       let res = await Book.find();
 
-      return res;
+      //  finds associated author
+      let books = res.map(async (book) => {
+        book["author"] = await Author.findById(book.authorId);
+        return book;
+      });
+
+      return books;
     },
 
     async getAuthorById(parent, args) {
