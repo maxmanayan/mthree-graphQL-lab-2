@@ -21,7 +21,7 @@ const typeDefs = gql`
 
     getAllBooks: [Book!]!
 
-    getAuthorById: Author
+    getAuthorById(id: ID!): Author
 
     getBookById: Book
   }
