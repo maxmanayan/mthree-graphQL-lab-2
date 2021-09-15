@@ -21,6 +21,12 @@ const resolvers = {
       let res = await newAuthor.save();
       return res;
     },
+
+    async createBook(parent, args) {
+      let newBook = new Book({ ...args });
+      let res = await newBook.save();
+      return res;
+    },
   },
 };
 
