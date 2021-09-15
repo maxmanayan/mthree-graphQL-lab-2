@@ -19,6 +19,12 @@ const resolvers = {
       let res = await Author.findById(id);
       return res;
     },
+
+    async getBookById(parent, args) {
+      const { id } = args;
+      let res = await Book.findById(id);
+      return res;
+    },
   },
   // Mutations ----------------------------------
   Mutation: {

@@ -23,7 +23,7 @@ const typeDefs = gql`
 
     getAuthorById(id: ID!): Author
 
-    getBookById: Book
+    getBookById(id: ID!): Book
   }
 
   # Mutations --------------------------------------------------
