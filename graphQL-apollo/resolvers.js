@@ -25,8 +25,10 @@ const resolvers = {
 
     async getAuthorById(parent, args) {
       const { id } = args;
-      let res = await Author.findById(id);
-      return res;
+      let author = await Author.findById(id);
+      author["books"] = await Book.find({ authorId: id });
+
+      return author;
     },
 
     async getBookById(parent, args) {
