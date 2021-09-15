@@ -6,7 +6,7 @@ const authorSchema = new mongoose.Schema(
     age: Number,
   },
   {
-    collection: "authors-oneToMany",
+    collection: "authorsOneToMany",
   }
 );
 
