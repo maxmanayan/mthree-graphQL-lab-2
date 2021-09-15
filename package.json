@@ -19,5 +19,8 @@
   "homepage": "https://github.com/maxmanayan/mthree-graphQL-lab-2#readme",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
   }
 }
