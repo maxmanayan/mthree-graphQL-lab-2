@@ -16,7 +16,6 @@ const typeDefs = gql`
   }
 
   # Queries --------------------------------------------------
-
   type Query {
     getAllAuthors: [Author!]!
 
@@ -24,6 +23,9 @@ const typeDefs = gql`
   }
 
   # Mutations --------------------------------------------------
+  type Mutation {
+    createAuthor(name: String!, age: Int!): Author
+  }
 `;
 
 module.exports = { typeDefs };

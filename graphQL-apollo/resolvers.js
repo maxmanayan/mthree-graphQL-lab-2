@@ -15,6 +15,13 @@ const resolvers = {
     },
   },
   // Mutations ----------------------------------
+  Mutation: {
+    async createAuthor(parent, args) {
+      let newAuthor = new Author({ ...args });
+      let res = await newAuthor.save();
+      return res;
+    },
+  },
 };
 
 module.exports = { resolvers };
