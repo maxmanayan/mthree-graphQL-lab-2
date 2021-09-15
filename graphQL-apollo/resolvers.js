@@ -38,8 +38,10 @@ const resolvers = {
 
     async getBookById(parent, args) {
       const { id } = args;
-      let res = await Book.findById(id);
-      return res;
+      let book = await Book.findById(id);
+      book["author"] = await Author.findById(book.authorId);
+
+      return book;
     },
   },
   // Mutations ----------------------------------
