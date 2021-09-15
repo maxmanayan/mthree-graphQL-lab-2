@@ -118,6 +118,15 @@ const resolvers = {
         console.log(error);
       }
     },
+
+    async deleteBook(parent, args) {
+      try {
+        let { id } = args;
+        await Book.deleteOne({ _id: id });
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
 };
 
