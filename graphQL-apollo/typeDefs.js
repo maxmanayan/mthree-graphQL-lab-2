@@ -1,11 +1,12 @@
 const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
-  # Types --------------------------------------------------
+  # Objects --------------------------------------------------
   type Author {
     id: ID!
     name: String!
     age: Int!
+    books: [Book!]
   }
 
   type Book {
@@ -13,6 +14,7 @@ const typeDefs = gql`
     name: String!
     genre: String!
     authorId: ID!
+    author: Author!
   }
 
   # Queries --------------------------------------------------
@@ -20,6 +22,10 @@ const typeDefs = gql`
     getAllAuthors: [Author!]!
 
     getAllBooks: [Book!]!
+
+    getAuthorById(id: ID!): Author
+
+    getBookById(id: ID!): Book
   }
 
   # Mutations --------------------------------------------------

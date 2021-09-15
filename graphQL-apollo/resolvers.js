@@ -6,12 +6,42 @@ const resolvers = {
   Query: {
     async getAllAuthors() {
       let res = await Author.find();
-      return res;
+
+      // finds associated books
+      let authors = res.map(async (author) => {
+        author["books"] = await Book.find({ authorId: author._id });
+        return author;
+      });
+
+      return authors;
     },
 
     async getAllBooks() {
       let res = await Book.find();
-      return res;
+
+      //  finds associated author
+      let books = res.map(async (book) => {
+        book["author"] = await Author.findById(book.authorId);
+        return book;
+      });
+
+      return books;
+    },
+
+    async getAuthorById(parent, args) {
+      const { id } = args;
+      let author = await Author.findById(id);
+      author["books"] = await Book.find({ authorId: id });
+
+      return author;
+    },
+
+    async getBookById(parent, args) {
+      const { id } = args;
+      let book = await Book.findById(id);
+      book["author"] = await Author.findById(book.authorId);
+
+      return book;
     },
   },
   // Mutations ----------------------------------
