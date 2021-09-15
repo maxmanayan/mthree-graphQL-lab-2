@@ -17,6 +17,12 @@ const typeDefs = gql`
 
   # Queries --------------------------------------------------
 
+  type Query {
+    getAllAuthors: [Author!]!
+
+    getAllBooks: [Book!]!
+  }
+
   # Mutations --------------------------------------------------
 `;
 
