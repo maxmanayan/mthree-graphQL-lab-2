@@ -20,6 +20,10 @@ const typeDefs = gql`
     getAllAuthors: [Author!]!
 
     getAllBooks: [Book!]!
+
+    getAuthorById: Author
+
+    getBookById: Book
   }
 
   # Mutations --------------------------------------------------
