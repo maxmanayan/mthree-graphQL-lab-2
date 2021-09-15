@@ -8,6 +8,13 @@ const typeDefs = gql`
     age: Int!
   }
 
+  type Book {
+    id: ID!
+    name: String!
+    genre: String!
+    authorId: ID!
+  }
+
   # Queries --------------------------------------------------
 
   # Mutations --------------------------------------------------
