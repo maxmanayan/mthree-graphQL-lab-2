@@ -12,7 +12,10 @@ const PORT = 3001;
 // apollo middleware
 
 // mongoose middleware
-// mongoose.connect()
+mongoose.connect(process.env.MONGODB_URL);
+const db = mongoose.connection;
+db.on("error", (error) => console.log(error));
+db.once("open", () => console.log("MongoDB connected..."));
 
 // APIs & middleware
 
