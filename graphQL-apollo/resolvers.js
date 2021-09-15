@@ -109,6 +109,15 @@ const resolvers = {
         console.log(error);
       }
     },
+
+    async deleteAuthor(parent, args) {
+      try {
+        let { id } = args;
+        await Author.deleteOne({ _id: id });
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
 };
 
