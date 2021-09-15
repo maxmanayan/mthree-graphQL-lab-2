@@ -6,11 +6,20 @@ const resolvers = {
   Query: {
     async getAllAuthors() {
       let res = await Author.find();
-      return res;
+
+      // finds associated books
+      let authors = res.map(async (author) => {
+        let books = await Book.find({ authorId: author._id });
+        author["books"] = books;
+        return author;
+      });
+
+      return authors;
     },
 
     async getAllBooks() {
       let res = await Book.find();
+
       return res;
     },
 

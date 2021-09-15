@@ -6,6 +6,7 @@ const typeDefs = gql`
     id: ID!
     name: String!
     age: Int!
+    books: [Book!]
   }
 
   type Book {
@@ -13,6 +14,7 @@ const typeDefs = gql`
     name: String!
     genre: String!
     authorId: ID!
+    author: Author!
   }
 
   # Queries --------------------------------------------------
