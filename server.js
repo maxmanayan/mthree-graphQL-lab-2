@@ -16,6 +16,7 @@ db.on("error", (error) => console.log(error));
 db.once("open", () => console.log("MongoDB connected..."));
 
 // apollo middleware
+server.applyMiddleware({ app });
 
 // APIs & middleware
 
