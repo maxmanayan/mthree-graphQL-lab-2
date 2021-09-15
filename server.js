@@ -12,6 +12,7 @@ const PORT = 3001;
 // apollo middleware
 
 // mongoose middleware
+// mongoose.connect()
 
 // APIs & middleware
 
