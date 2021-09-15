@@ -35,6 +35,8 @@ const typeDefs = gql`
     createBook(authorId: ID!, name: String!, genre: String!): Book
 
     updateAuthor(id: ID!, name: String!, age: Int!): Author
+
+    updateBook(id: ID!, name: String!, genre: String!): Book
   }
 `;
 

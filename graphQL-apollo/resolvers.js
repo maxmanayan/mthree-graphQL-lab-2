@@ -94,6 +94,21 @@ const resolvers = {
         console.log(error);
       }
     },
+
+    async updateBook(parent, args) {
+      try {
+        let { id, name, genre } = args;
+        let res = await Book.findById(id);
+        if (name && genre) {
+          res["name"] = name;
+          res["genre"] = genre;
+        }
+        let updatedBook = await res.save();
+        return updatedBook;
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
 };
 
