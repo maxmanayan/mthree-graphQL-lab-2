@@ -11,7 +11,7 @@ const bookSchema = new mongoose.Schema(
     },
   },
   {
-    collection: "books-oneToMany",
+    collection: "booksOneToMany",
   }
 );
 
