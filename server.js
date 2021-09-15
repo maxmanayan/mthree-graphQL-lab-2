@@ -20,3 +20,6 @@ const PORT = 3001;
 // error handlers
 
 // exports
+module.exports = app.listen(PORT, () => {
+  console.log(`Listening on http://localhost:${PORT}`);
+});
