@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/maxmanayan/mthree-graphQL-lab-2#readme",
   "dependencies": {
+    "apollo-server-express": "^3.3.0",
     "express": "^4.17.1",
     "mongoose": "^6.0.5"
   },
