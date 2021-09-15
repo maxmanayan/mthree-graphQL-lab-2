@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const app = express();
 
 // constants
+const PORT = 3001;
 
 // apollo middleware
 
