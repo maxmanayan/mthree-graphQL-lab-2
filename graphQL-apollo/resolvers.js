@@ -5,57 +5,127 @@ const resolvers = {
   // Queries ----------------------------------
   Query: {
     async getAllAuthors() {
-      let res = await Author.find();
-
-      // finds associated books
-      let authors = res.map(async (author) => {
-        author["books"] = await Book.find({ authorId: author._id });
-        return author;
-      });
-
-      return authors;
+      try {
+        let res = await Author.find();
+        console.log(res);
+        // finds associated books
+        let authors = res.map(async (author) => {
+          author["books"] = await Book.find({ authorId: author._id });
+          return author;
+        });
+        console.log(authors);
+        return authors;
+      } catch (error) {
+        console.log(error);
+      }
     },
 
     async getAllBooks() {
-      let res = await Book.find();
-
-      //  finds associated author
-      let books = res.map(async (book) => {
-        book["author"] = await Author.findById(book.authorId);
-        return book;
-      });
-
-      return books;
+      try {
+        let res = await Book.find();
+        //  finds associated author
+        let books = res.map(async (book) => {
+          book["author"] = await Author.findById(book.authorId);
+          return book;
+        });
+        return books;
+      } catch (error) {
+        console.log(error);
+      }
     },
 
     async getAuthorById(parent, args) {
-      const { id } = args;
-      let author = await Author.findById(id);
-      author["books"] = await Book.find({ authorId: id });
-
-      return author;
+      try {
+        const { id } = args;
+        let author = await Author.findById(id);
+        author["books"] = await Book.find({ authorId: id });
+        return author;
+      } catch (error) {
+        console.log(error);
+      }
     },
 
     async getBookById(parent, args) {
-      const { id } = args;
-      let book = await Book.findById(id);
-      book["author"] = await Author.findById(book.authorId);
-
-      return book;
+      try {
+        const { id } = args;
+        let book = await Book.findById(id);
+        book["author"] = await Author.findById(book.authorId);
+        return book;
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
   // Mutations ----------------------------------
   Mutation: {
     async createAuthor(parent, args) {
-      let newAuthor = new Author({ ...args });
-      let res = await newAuthor.save();
-      return res;
+      try {
+        let newAuthor = new Author({ ...args });
+        let res = await newAuthor.save();
+        return res;
+      } catch (error) {
+        console.log(error);
+      }
     },
 
     async createBook(parent, args) {
-      let newBook = new Book({ ...args });
-      let res = await newBook.save();
-      return res;
+      try {
+        let newBook = new Book({ ...args });
+        let res = await newBook.save();
+        return res;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    async updateAuthor(parent, args) {
+      try {
+        let { id, name, age } = args;
+        let res = await Author.findById(id);
+        console.log("res", res);
+        if (name && age) {
+          res["name"] = name;
+          res["age"] = age;
+        }
+        let updatedUser = await res.save();
+        console.log("updatedUser", updatedUser);
+        return updatedUser;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    async updateBook(parent, args) {
+      try {
+        let { id, name, genre } = args;
+        let res = await Book.findById(id);
+        if (name && genre) {
+          res["name"] = name;
+          res["genre"] = genre;
+        }
+        let updatedBook = await res.save();
+        return updatedBook;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    async deleteAuthor(parent, args) {
+      try {
+        let { id } = args;
+        await Author.deleteOne({ _id: id });
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    async deleteBook(parent, args) {
+      try {
+        let { id } = args;
+        await Book.deleteOne({ _id: id });
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };
